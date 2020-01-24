@@ -22,13 +22,15 @@ namespace lab_23_Rabbit_Generator
     {
 
         static List<Rabbit> rabbitList = new List<Rabbit>();
+        static List<Rabbit> rabbitList2 = new List<Rabbit>();
         static Rabbit firstRab = new Rabbit();
         public MainWindow()
         {
             InitializeComponent();
             firstRab.Age = 0;
-            firstRab.name = "Rabbit" + 1;
+            firstRab.name = "Rabbit ID: " + 1;
             rabbitList.Add(firstRab);
+            rabbitList2.Add(firstRab);
         }
 
         private void task1Button_Click(object sender, RoutedEventArgs e)
@@ -36,7 +38,7 @@ namespace lab_23_Rabbit_Generator
             for (int i = 0; i < 100; i++)
             {
                 var r = new Rabbit();
-                r.name = "Rabbit " + i;
+                r.name = "Rabbit ID: " + i;
                 rabbitList.Add(r);
                 list1.Items.Add(r.name);
                
@@ -54,7 +56,7 @@ namespace lab_23_Rabbit_Generator
             for (int i = 0; i < 100; i++)
             {
                 var r = new Rabbit();
-                r.name = "Rabbit " + i;
+                r.name = "Rabbit ID: " + i;
                 r.Age = 0;
                 rabbitList.Add(r);
                 
@@ -73,7 +75,7 @@ namespace lab_23_Rabbit_Generator
             }
             foreach (var x in rabbitList)
             {
-                list2.Items.Add(x.name + " " + x.Age);
+                list2.Items.Add(x.name + " Age: " + x.Age);
             }
 
         }
@@ -93,12 +95,12 @@ namespace lab_23_Rabbit_Generator
             {
                 var rbt = new Rabbit();
                 rbt.Age = 0;
-                rbt.name = "Rabbit "+rabbitList.Count;
+                rbt.name = "Rabbit ID: " + (rabbitList.Count+1);
                 rabbitList.Add(rbt);
             }
             foreach (var i in rabbitList)
             {
-                list3.Items.Add(i.name + " " + i.Age);
+                list3.Items.Add(i.name + " Age: " + i.Age);
             }
 
 
@@ -106,7 +108,31 @@ namespace lab_23_Rabbit_Generator
 
         private void AgeRestrict_Click(object sender, RoutedEventArgs e)
         {
+            list4.Items.Clear();
 
+
+
+            foreach (var i in rabbitList2.ToArray())
+            {
+                i.Age++;
+                if (i.Age >= 3)
+                {
+
+
+                    foreach (var x in rabbitList2.ToArray())
+                    {
+                        var rbt = new Rabbit();
+                        rbt.Age = 0;
+                        rbt.name = "Rabbit ID: " + (rabbitList2.Count + 1);
+                        rabbitList2.Add(rbt);
+                        break;
+                    }
+                    foreach (var y in rabbitList2)
+                    {
+                        list4.Items.Add(y.name + " Age: " + y.Age);
+                    }
+                }
+            }
         }
     }
     class Rabbit
