@@ -13,10 +13,14 @@ namespace lab_22_Rabbits_breed
             rabbitList.Add(new Rabbit());
             rabbitList[0].Age = 0;
             rabbitList[0].RabbitID = 0;
+            string[] names = { "Joe", "Jack", "Tom", "Dick", "Harry", "Jamie", "Phil", "Kay", "Steven", "Alex" };
+            var rnd = new Random();
+
 
 
             Breed(rabbitList);
-            rabbitList.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} and is {x.Age} years old"));
+            rabbitList.ForEach(x => x.name = names[rnd.Next(0, 9)]);
+            rabbitList.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
 
 
             void Breed(List<Rabbit> rabs)
@@ -38,7 +42,7 @@ namespace lab_22_Rabbits_breed
                                 
                             }
                         Breed(rabs);
-                        if (totalRabits > 50)
+                        if (totalRabits > 65)
                         {
                             break;
                         }
