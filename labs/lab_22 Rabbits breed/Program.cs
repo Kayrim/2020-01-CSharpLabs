@@ -8,25 +8,28 @@ namespace lab_22_Rabbits_breed
         static void Main(string[] args)
         {
             //Rabbits can now produce a new rabbit once a year
-            int totalRabits = 1;
+            // Creating and initiating lists/objects/variables and the first rabbit - Chicken before the egg :)
+            
             var rabbitList = new List<Rabbit>();
             rabbitList.Add(new Rabbit());
             rabbitList[0].Age = 0;
-            rabbitList[0].RabbitID = 0;
+            rabbitList[0].RabbitID = 1;
+            int totalRabits = 1;
             string[] names = { "Joe", "Jack", "Tom", "Dick", "Harry", "Jamie", "Phil", "Kay", "Steven", "Alex" };
             var rnd = new Random();
 
 
 
-            Breed(rabbitList);
+            // enter the amount of rabbits to breed (rounded to closes number that is 2^2
+            Breed(rabbitList , 64);
             rabbitList.ForEach(x => x.name = names[rnd.Next(0, 9)]);
             rabbitList.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
 
 
-            void Breed(List<Rabbit> rabs)
+            void Breed(List<Rabbit> rabs , int input)
             {
                 int rabbitsIn = rabs.Count;
-                if (rabbitsIn < 50)
+                if (rabbitsIn < input)
                 {
                     for (int i = 0; i <= rabbitsIn; i++)
                     {
@@ -36,19 +39,17 @@ namespace lab_22_Rabbits_breed
                             {
                                 
                                     rabs.Add(new Rabbit());
-                                    rabs[totalRabits].RabbitID = totalRabits;
+                                    rabs[totalRabits].RabbitID = totalRabits+1;
                                     rabs[totalRabits].Age = 0;
                                     totalRabits++;
                                 
                             }
-                        Breed(rabs);
-                        if (totalRabits > 65)
-                        {
-                            break;
-                        }
+                        Breed(rabs, input);
+                        break;
+                        
                     }
                 }
-                else Console.WriteLine("Too many RabbitS!!!!!");
+                else Console.WriteLine($"Rabbits have been neutered, too stop breeding at {totalRabits}");
 
 
             }

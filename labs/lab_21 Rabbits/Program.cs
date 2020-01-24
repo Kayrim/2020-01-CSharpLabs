@@ -27,10 +27,9 @@ namespace lab_21_Rabbits
 
                 AgeRabbits(rabbits);
 
-                if (i % 5 == 0)
-                {
+               
                     Console.WriteLine($"Rabbit {rabbits[i].RabbitID} is called {rabbits[i].name} and is {rabbits[i].Age} years old");
-                }
+                
                 
             }
             
