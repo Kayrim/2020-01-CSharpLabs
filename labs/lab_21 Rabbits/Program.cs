@@ -16,7 +16,7 @@ namespace lab_21_Rabbits
             {
                 rabbits.Add(new Rabbit());
                 rabbits[i].RabbitID = i;
-            }
+            //}
             
             rabbits.ForEach(x => x.Age = 0);
             rabbits.ForEach(x => x.name = names[rnd.Next(0,9)]);
