@@ -7,7 +7,7 @@ namespace lab_14_Access_modifiers
         static void Main(string[] args)
         {
 
-            var x = new 
+            var x = new Child();
             
         }
     }

@@ -19,7 +19,7 @@ namespace lab_15_value_reference
             }
 
             Dog d = new Dog();
-            int x = 5;
+            
 
             Console.WriteLine(d.age);
             addOneYearToDogAge(d);

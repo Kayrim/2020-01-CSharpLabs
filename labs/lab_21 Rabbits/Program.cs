@@ -9,47 +9,48 @@ namespace lab_21_Rabbits
         {
             var rnd = new Random();
 
-            string[] names = { "joe" ,"jack", "tom","dick","harry","jamie","phil","kay","steven","alex"};
+            string[] names = { "joe", "jack", "tom", "dick", "harry", "jamie", "phil", "kay", "steven", "alex" };
 
             var rabbits = new List<Rabbit>();
             for (int i = 0; i < 100; i++)
             {
                 rabbits.Add(new Rabbit());
                 rabbits[i].RabbitID = i;
-            //}
-            
-            rabbits.ForEach(x => x.Age = 0);
-            rabbits.ForEach(x => x.name = names[rnd.Next(0,9)]);
+                //}
 
-            rabbits.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
-            for (int i = 0; i < 50; i++)
-            {
+                rabbits.ForEach(x => x.Age = 0);
+                rabbits.ForEach(x => x.name = names[rnd.Next(0, 9)]);
 
-                AgeRabbits(rabbits);
+                rabbits.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
+                for (int si = 0; si < 50; si++)
+                {
 
-               
-                    Console.WriteLine($"Rabbit {rabbits[i].RabbitID} is called {rabbits[i].name} and is {rabbits[i].Age} years old");
-                
-                
+                    AgeRabbits(rabbits);
+
+
+                    Console.WriteLine($"Rabbit {rabbits[si].RabbitID} is called {rabbits[si].name} and is {rabbits[si].Age} years old");
+
+
+                }
+
+
+                //rabbits.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
+
+
+
+                void AgeRabbits(List<Rabbit> x)
+                {
+
+                    x.ForEach(i => i.Age++);
+                }
+
             }
-            
-
-            //rabbits.ForEach(x => Console.WriteLine($"Rabbit {x.RabbitID} is called {x.name} and is {x.Age} years old"));
-
-
-
-            void AgeRabbits(List<Rabbit> x)
-            {
-
-                x.ForEach(i => i.Age++);
-            }
-
         }
-    }
-    class Rabbit
-    {
-        public int RabbitID { get; set; }
-        public string name { get; set; }
-        public int Age { get; set; }
+        class Rabbit
+        {
+            public int RabbitID { get; set; }
+            public string name { get; set; }
+            public int Age { get; set; }
+        }
     }
 }

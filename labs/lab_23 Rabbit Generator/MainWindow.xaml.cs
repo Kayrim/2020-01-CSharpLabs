@@ -25,16 +25,19 @@ namespace lab_23_Rabbit_Generator
         static List<Rabbit> rabbitList2 = new List<Rabbit>();
         static List<Rabbit> rabbitList3 = new List<Rabbit>();
         static List<Rabbit> rabbitList4 = new List<Rabbit>();
-        static Rabbit firstRab = new Rabbit();
+        
         public MainWindow()
         {
             InitializeComponent();
 
-            
+            Rabbit firstRab = new Rabbit();
+            Rabbit firstRab2 = new Rabbit();
             firstRab.Age = 0;
+            firstRab2.Age = 0;
             firstRab.name = "Rabbit ID: " + 1;
+            firstRab2.name = "Rabbit ID: " + 1;
             rabbitList3.Add(firstRab);
-            rabbitList4.Add(firstRab);
+            rabbitList4.Add(firstRab2);
             
         }
 
