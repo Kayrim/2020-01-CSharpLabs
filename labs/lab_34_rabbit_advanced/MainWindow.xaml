@@ -9,18 +9,24 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name ="ShowRabbits" Content="Show Rabbits" Grid.Column="0" Grid.Row="2" Click="ShowRabbits_Click"/>
-        <ListView x:Name="ListRabbits" Grid.Row="3" SelectionChanged="ListRabbits_SelectionChanged" MouseRightButtonUp="ListRabbits_MouseRightButtonUp">
+        <Button x:Name ="ShowRabbits" Content="Show Rabbits" Grid.Column="0" Grid.Row="2" Click="ShowRabbits_Click" Height="40" Width="100"/>
+        <Button x:Name="AddRabbit" Content="Add a Rabbit" Grid.Column="0" Grid.Row="1" Click="AddRabbit_Click"/>
+        <Button x:Name="EditRabbitButton" Content="Edit" Grid.Column="1" Grid.Row="2" Click="EditRabbitButton_Click"/>
+        <ListView x:Name="ListRabbits" Grid.Row="3" SelectionChanged="ListRabbits_SelectionChanged" MouseRightButtonUp="ListRabbits_MouseRightButtonUp" MouseDoubleClick="ListRabbits_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="ID" DisplayMemberBinding= "{Binding RabbitID}"/>
@@ -32,8 +38,8 @@
                 </GridView>
             </ListView.View>
             </ListView>
-        <TextBox x:Name= "TextboxRabbitName" Grid.Row="2" Grid.Column="1"/>
-        <Label x:Name="NameLabel" Content="Rabbit Name" Grid.Column="1" Grid.Row="1" FontWeight="UltraBlack" FontSize="38" HorizontalAlignment="Center"/>
+        <TextBox x:Name= "TextboxRabbitName" Grid.Row="2" Grid.Column="2"/>
+        <Label x:Name="NameLabel" Content="Rabbit Name" Grid.Column="2" Grid.Row="1" FontWeight="UltraBlack" FontSize="16" HorizontalAlignment="Center"/>
 
     </Grid>
 </Window>

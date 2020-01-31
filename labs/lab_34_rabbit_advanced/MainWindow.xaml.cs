@@ -33,11 +33,10 @@ namespace lab_34_rabbit_advanced
         {
             using (var db = new rabbitDatabaseEntities())
             {
-
-                rabbits = db.rabbitTables.ToList();
-                
+                rabbits = db.rabbitTables.ToList();   
             }
-            
+            TextboxRabbitName.IsReadOnly = true;
+            EditRabbitButton.IsEnabled = false;
         }
 
         private void ListRabbits_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +45,9 @@ namespace lab_34_rabbit_advanced
             {
                 rb = (rabbitTable)ListRabbits.SelectedItem;
                 TextboxRabbitName.Text = rb.RabbitName.ToString();
+                // setting the textbox to read only so it cant be edited
+                TextboxRabbitName.IsReadOnly = true;
+                EditRabbitButton.IsEnabled = true;
             }
             
         }
@@ -74,6 +76,86 @@ namespace lab_34_rabbit_advanced
                     }
                     
 
+                }
+            }
+        }
+
+        private void AddRabbit_Click(object sender, RoutedEventArgs e)
+        {
+            if (AddRabbit.Content.ToString() == "Add a Rabbit")
+            {
+                TextboxRabbitName.IsReadOnly = false;
+                TextboxRabbitName.Text = "";
+             
+
+                AddRabbit.Content = "Save Changes";
+
+            }else{
+
+                if (TextboxRabbitName.Text.Length > 0)
+                {
+                    using (var db = new rabbitDatabaseEntities())
+                    {
+                        var rabbitToAdd = new rabbitTable()
+                        {
+                            RabbitName = TextboxRabbitName.Text
+                        };
+
+
+                        db.rabbitTables.Add(rabbitToAdd);
+                        db.SaveChanges();
+                        ListRabbits.ItemsSource = null;
+                        rabbits = db.rabbitTables.ToList();
+                        ListRabbits.ItemsSource = rabbits;
+
+
+
+
+                    }
+                    TextboxRabbitName.Text = "";
+                }
+                
+                AddRabbit.Content = "Add a Rabbit";
+            }
+
+            
+        }
+
+        private void ListRabbits_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void EditRabbitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (rb!=null)
+            {
+                if (EditRabbitButton.Content.ToString()== "Edit")
+                {
+                    EditRabbitButton.Content = "Save";
+                    var bc = new BrushConverter();
+                    TextboxRabbitName.Background = (Brush)bc.ConvertFrom("#F0F9D9");
+                    TextboxRabbitName.IsReadOnly = false;
+                }
+                else
+                {
+                    if (TextboxRabbitName.Text.Length>0)
+                    {
+                        using (var db = new rabbitDatabaseEntities())
+                        {
+                            var rabbitToUpdate = db.rabbitTables.Find(rb.RabbitID);
+                            //Int32.TryParse(textboxrabbitage.text.ToString(), out int rabbitAge);
+                            rabbitToUpdate.RabbitName = TextboxRabbitName.Text;
+                            // rabbitToUpdate.RabbitAge = rabbitAge;
+                            db.SaveChanges();
+                            ListRabbits.ItemsSource = null;
+                            rabbits = db.rabbitTables.ToList();
+                            ListRabbits.ItemsSource = rabbits;
+
+                        }
+                        
+                    }
+                    EditRabbitButton.Content = "Edit";
                 }
             }
         }
