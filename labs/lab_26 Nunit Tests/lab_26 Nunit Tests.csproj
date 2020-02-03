@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lab_28_test_practice\lab_28_test_practice.csproj" />
+    <ProjectReference Include="..\lab_36_Northwind_core\lab_36_Northwind_core.csproj" />
   </ItemGroup>
 
 </Project>
