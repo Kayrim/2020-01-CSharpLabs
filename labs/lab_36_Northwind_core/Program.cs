@@ -11,31 +11,86 @@ namespace lab_36_Northwind_core
     class Program
     {
         public static List<Customer> customers = new List<Customer>();
+        public static List<Product> products = new List<Product>();
+        public static List<Category> categories = new List<Category>();
         static string path = "newCustomers.csv";
         static void Main(string[] args)
         {
             using (var db = new NorthwindDbContext())
             {
                 customers = db.Customers.ToList();
+
+                // AddCustomer("john1", "SpartaGlobal");
+                if (File.Exists(path))
+                {
+                    File.Delete(path);
+                }
+                File.AppendAllText(path, "ID,Name,Company,City,Country\n");
+                //PrintCustomers();
+
+                // Process.Start("EXCEL", path);
+                Console.WriteLine($"{"john",-12}");
+
+
+                // These have to be casted to be used again
+                var customer01 =
+                    from c in db.Customers
+                    where c.City == "London" || c.City == "Berlin"
+                    select c;
+
+                PrintCustomers(customer01.ToList());
+
+
+
+                var customList =
+                    from c in db.Customers
+                    select new CustomObject()
+                    {
+                        Name = c.ContactName,
+                        City = c.City,
+                        Country = c.Country
+                    };
+
+                customList.ToList().ForEach(c => Console.WriteLine($"{c.City}{c.Name}{c.Country}"));
+
+                var customerCountByCity =
+                    from c in db.Customers
+                    group c by c.City into Cities
+                    orderby Cities.Count() descending
+                    where Cities.Count() > 1
+                    select new
+                    {
+                        City = Cities.Key,
+                        Count = Cities.Count()
+                    };
+                customerCountByCity.ToList().ForEach(x => Console.WriteLine($"{x.City}{x.Count}"));
+
+
+                var products1 =
+                    from p in db.Products
+                    select p;
+
+                var categories1 =
+                    from c in db.Categories
+                    select c;
+
+
+                PrintProducts(products1.ToList());
+
+
+
+
+                products = db.Products.ToList();
+                PrintProducts(products);
+
+
+                static void PrintProducts(List<Product> products)
+                {
+                    products.ForEach(x => Console.WriteLine($"{x.ProductID,-10}{x.ProductName,-35}{x.CategoryID,-10}{x.Category.CategoryName,-10}{x.UnitPrice,-10}{x.UnitsInStock,-10}"));
+                }
             }
-           // AddCustomer("john1", "SpartaGlobal");
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
-            File.AppendAllText(path, "ID,Name,Company,City,Country\n");
-            PrintCustomers();
-            Process.Start("EXCEL", path);
         }
 
-        static void AddCustomer(String Name, String ComName)
-        {
-            Customer customer1 = new Customer();
-            customer1.ContactName = Name;
-            customer1.CompanyName = ComName;
-            customers.Add(customer1);
-
-        }
 
         static void PrintCustomers()
         {
@@ -46,66 +101,17 @@ namespace lab_36_Northwind_core
                 File.AppendAllText(path, data);
             });
         }
-    }
-    class NorthwindDbContext : DbContext
-    {
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
+
+        static void PrintCustomers(List<Customer> filterCustomers)
         {
-            builder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Northwind;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            customers = filterCustomers;
+            customers.ForEach(c =>
+            {
+                string data = $"{ c.CustomerID},{c.ContactName},{c.CompanyName},{c.City},{c.Country}\n";
+                Console.WriteLine(data);
+                File.AppendAllText(path, data);
+            });
         }
-        //Dbset Customer
-        public DbSet<Customer> Customers { get; set; }
-    }
-
-    public partial class Customer
-    {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-      
-
-        [StringLength(5)]
-        public string CustomerID { get; set; }
-
-        [Required]
-        [StringLength(40)]
-        public string CompanyName { get; set; }
-
-        [StringLength(30)]
-        public string ContactName { get; set; }
-
-        [StringLength(30)]
-        public string ContactTitle { get; set; }
-
-        [StringLength(60)]
-        public string Address { get; set; }
-
-        [StringLength(15)]
-        public string City { get; set; }
-
-        [StringLength(15)]
-        public string Region { get; set; }
-
-        [StringLength(10)]
-        public string PostalCode { get; set; }
-
-        [StringLength(15)]
-        public string Country { get; set; }
-
-        [StringLength(24)]
-        public string Phone { get; set; }
-
-        [StringLength(24)]
-        public string Fax { get; set; }
-
-    }
-
-    class Product
-    {
-
-    }
-
-    class Supplier
-    {
-
     }
 
     public class TestsforNorth
@@ -117,23 +123,27 @@ namespace lab_36_Northwind_core
                 List<Customer> customers = new List<Customer>();
                 customers = db.Customers.ToList();
 
+
                 return customers.Count;
             }
-            
+
 
         }
         public int TestCustomerList2()
         {
             using (var db = new NorthwindDbContext())
             {
-                List<Customer> customers = new List<Customer>();
+
                 Customer customer1 = new Customer();
                 customer1.ContactName = "john1";
                 customer1.CompanyName = "Sparta";
-                customers = db.Customers.ToList();
-                customers.Add(customer1);
+                customer1.CustomerID = "222";
+                db.Customers.Add(customer1);
+                db.SaveChanges();
+                List<Customer> customers = db.Customers.ToList();
 
-                
+
+
 
                 return customers.Count;
             }
@@ -144,21 +154,27 @@ namespace lab_36_Northwind_core
         {
             using (var db = new NorthwindDbContext())
             {
-                List<Customer> customers = new List<Customer>();
-                Customer customer1 = new Customer();
-                customer1.ContactName = "john1";
-                customer1.CompanyName = "Sparta";
-                customers = db.Customers.ToList();
-                customers.Add(customer1);
 
-                customers.RemoveAt(customers.Count-1);
+                var toDelete = db.Customers.Find("222");
+                db.Customers.Remove(toDelete);
+                db.SaveChanges();
+
+                List<Customer> length = db.Customers.ToList();
 
 
 
-                return customers.Count;
+                return length.Count;
             }
 
 
         }
+    }
+
+    class CustomObject
+    {
+        public string Name { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+
     }
 }
