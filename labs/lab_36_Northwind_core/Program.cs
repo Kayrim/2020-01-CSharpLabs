@@ -168,6 +168,106 @@ namespace lab_36_Northwind_core
 
 
         }
+
+        public int TestProducts()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Product> products = new List<Product>();
+
+
+                products = db.Products.ToList();
+
+                return products.Count;
+
+            }
+        }
+
+        public int TestProductsWithGivenLetter()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Product> products = new List<Product>();
+
+                products = db.Products.ToList();
+
+                var productsWithP =
+                    from p in db.Products
+                    where p.ProductName.StartsWith("p")
+                    select p;
+
+
+                    return productsWithP.ToList().Count;
+            }
+
+
+
+        }
+        public int TestProductsContainingGivenLetter()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Product> products = new List<Product>();
+
+                products = db.Products.ToList();
+
+                var productsWithP =
+                    from p in db.Products
+                    where p.ProductName.Contains("a")
+                    select p;
+
+
+                return productsWithP.ToList().Count;
+            }
+
+
+
+        }
+        public int TestCustomersWithinGivenCity()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Customer> customers = new List<Customer>();
+
+                customers = db.Customers.ToList();
+
+                var customerCity =
+                    from p in db.Customers
+                    where p.City == "London"
+                    select p;
+
+
+                return customerCity.ToList().Count;
+            }
+
+
+
+        }
+        public int TestCustomersWithGivenCountry()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Customer> customers = new List<Customer>();
+
+                customers = db.Customers.ToList();
+
+                var customerCountry =
+                    from p in db.Customers
+                    group p by p.Country into Countries
+                    where Countries.Count() > 3
+                    select new
+                    {
+                        Country = Countries.Key,
+                        Count = Countries.Count()
+                    };
+
+
+                return customerCountry.Count();
+            }
+
+
+
+        }
     }
 
     class CustomObject
@@ -177,4 +277,6 @@ namespace lab_36_Northwind_core
         public string Country { get; set; }
 
     }
+
+    
 }
