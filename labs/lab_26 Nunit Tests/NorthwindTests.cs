@@ -71,17 +71,26 @@ namespace lab_26_Nunit_Tests
 
             Assert.AreEqual(58, actual);
         }
-        [Test]
-        public void TestCustomersWithinCityLondon()
+        [TestCase("London",6)]
+        public void TestCustomersWithinCity(String city, int expected)
         {
             var instance = new TestsforNorth();
 
-            var actual = instance.TestCustomersWithinGivenCity();
+            var actual = instance.TestCustomersWithinGivenCity(city);
 
-            Assert.AreEqual(6, actual);
+            Assert.AreEqual(expected, actual);
         }
         [Test]
         public void TestCustomersWithinCountryOver3()
+        {
+            var instance = new TestsforNorth();
+
+            var actual = instance.TestCustomersWithGivenCountry();
+
+            Assert.AreEqual(8, actual);
+        }
+        [Test]
+        public void TestProductsDiscontinued()
         {
             var instance = new TestsforNorth();
 

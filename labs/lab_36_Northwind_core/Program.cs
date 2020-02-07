@@ -223,7 +223,7 @@ namespace lab_36_Northwind_core
 
 
         }
-        public int TestCustomersWithinGivenCity()
+        public int TestCustomersWithinGivenCity(string city)
         {
             using (var db = new NorthwindDbContext())
             {
@@ -233,7 +233,7 @@ namespace lab_36_Northwind_core
 
                 var customerCity =
                     from p in db.Customers
-                    where p.City == "London"
+                    where p.City == city
                     select p;
 
 
@@ -263,6 +263,25 @@ namespace lab_36_Northwind_core
 
 
                 return customerCountry.Count();
+            }
+
+
+
+        }
+        
+        public int TestDiscontinuedProducts()
+        {
+            using (var db = new NorthwindDbContext())
+            {
+                List<Customer> customers = new List<Customer>();
+
+                var products =
+                    from p in db.Products
+                    where p.Discontinued == true
+                    select p;
+
+
+                return products.Count();
             }
 
 
