@@ -22,12 +22,16 @@ namespace lab_43_entity_core_sql_sqlite
                 db.Database.EnsureDeleted();
                 db.Database.EnsureCreated();
 
-                Category admin = new Category() { CategoryID = 1, CategoryName = "BOSS" };
+                Category boss = new Category() { CategoryID = 1, CategoryName = "BOSS" };
 
                 Company amazon = new Company() { CompanyName = "Amazon", CompanyID = 1 };
 
                 User tim = new User() { UserName = "Tim", CategoryID = 1, DateOfBirth = DateTime.Now, isValid = true, UserID = 1 , CompanyID = 1 };
 
+                db.Users.Add(tim);
+                db.Companies.Add(amazon);
+                db.Categories.Add(boss);
+                db.SaveChanges();
                 users = db.Users.ToList();
                 categories = db.Categories.ToList();
 
@@ -91,9 +95,15 @@ namespace lab_43_entity_core_sql_sqlite
     }
     public class Company
     {
+        public Company()
+        {
+            Users = new HashSet<User>();
+        }
 
         public int CompanyID { get; set; }
         public string CompanyName { get; set; }
+
+        public virtual ICollection<User> Users { get; set; }
 
     }
 }
