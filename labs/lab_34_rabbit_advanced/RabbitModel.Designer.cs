@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\2020-01-CSharpLabs\labs\lab_34_rabbit_advanced\RabbitModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Kay\source\repos\2020-01-CSharpLabs\labs\lab_34_rabbit_advanced\RabbitModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

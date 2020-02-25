@@ -83,7 +83,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab_41_OOP_events", "lab_41
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_41_wpf_entity_UC", "lab_41_wpf_entity_UC\lab_41_wpf_entity_UC.csproj", "{966CA53B-586A-4482-B7A9-3136F19A7D0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_43_entity_core_sql_sqlite", "lab_43_entity_core_sql_sqlite\lab_43_entity_core_sql_sqlite.csproj", "{67FE5F9E-EC7C-4CD5-A5C5-A883EE9947B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lab_43_entity_core_sql_sqlite", "lab_43_entity_core_sql_sqlite\lab_43_entity_core_sql_sqlite.csproj", "{67FE5F9E-EC7C-4CD5-A5C5-A883EE9947B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab_55_CoreNorthwind", "lab_55_CoreNorthwind\lab_55_CoreNorthwind.csproj", "{8FD88474-44BE-484B-85B4-9721CD7A0E65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,6 +257,10 @@ Global
 		{67FE5F9E-EC7C-4CD5-A5C5-A883EE9947B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67FE5F9E-EC7C-4CD5-A5C5-A883EE9947B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67FE5F9E-EC7C-4CD5-A5C5-A883EE9947B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FD88474-44BE-484B-85B4-9721CD7A0E65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FD88474-44BE-484B-85B4-9721CD7A0E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FD88474-44BE-484B-85B4-9721CD7A0E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FD88474-44BE-484B-85B4-9721CD7A0E65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
