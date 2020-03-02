@@ -10,7 +10,7 @@ namespace lab_02_ildasm
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hoping to show ILDASM Code");
+            Console.WriteLine("Hoping to show ILDASM disassembled code");
         }
     }
 }

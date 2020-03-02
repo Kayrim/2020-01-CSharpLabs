@@ -1,3 +1,0 @@
-@Imports lab_53_APIS.Areas.HelpPage.ModelDescriptions
-@ModelType SimpleTypeModelDescription
-@Model.Documentation

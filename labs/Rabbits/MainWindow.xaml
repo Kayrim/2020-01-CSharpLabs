@@ -1,0 +1,33 @@
+﻿<Window x:Class="Rabbits.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rabbits"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="Auto" Width="Auto">
+    <Grid Background="#B3FFBC">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="15*" />
+        </Grid.RowDefinitions>
+        <Button x:Name="Button100Rabbits" Grid.Row="1" Grid.Column="0" Background="#A4E8A2" 
+                Content="Generate 100 Rabbits" Click="Button100Rabbits_Click"  />
+        <Button x:Name="ButtonAgeRabbits100Times" Grid.Row="1" Grid.Column="1" Background="#A4E8A2" 
+                Content="Age Rabbits 100 Times" Click="ButtonAgeRabbits100Times_Click"    />
+        <Label x:Name="Header" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" 
+               Content = "Rabbit Generator" FontSize="30" FontWeight="Bold" 
+               HorizontalContentAlignment="Center" Background="#a7E8A2"/>
+        <ListBox x:Name="ListBox100Rabbits" Grid.Column="0" Grid.Row="3" Background="#E2FFBF"/>
+        <ListBox x:Name="ListBoxAgeRabbits100Times" Grid.Column="1" Grid.Row="3"  
+                 Background="#E2FFBF" />
+    </Grid>
+</Window>

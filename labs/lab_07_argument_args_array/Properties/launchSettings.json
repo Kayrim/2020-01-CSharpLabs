@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "lab_07_argument_args_array": {
+      "commandName": "Project",
+      "commandLineArgs": "Here is an argument"
+    }
+  }
+}

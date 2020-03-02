@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{691FFDCB-1A53-4A26-882C-6693F4E0F387}</ProjectGuid>
+    <ProjectGuid>{20896A3F-40CC-434A-B614-AF5F8A0B2E2F}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>lab_02_ildasm</RootNamespace>
     <AssemblyName>lab_02_ildasm</AssemblyName>
@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="StyleCop, Version=6.1.0.0, Culture=neutral, PublicKeyToken=f904653c63bc2738, processorArchitecture=MSIL">
+      <HintPath>..\packages\StyleCop.6.1.0\lib\net40\StyleCop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
